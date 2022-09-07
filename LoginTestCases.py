@@ -26,17 +26,17 @@ class LoginTestCases(unittest.TestCase):
             self.login_screen.is_present(element)
 
     def test_successful_login(self):
-        self.login_screen.type(self.login_screen.EMAIL_FIELD, "nbalci09@gmail.com")
+        # insert provided username
+        self.login_screen.type(self.login_screen.EMAIL_FIELD, "")
         self.login_screen.click(self.login_screen.PASSWORD_FIELD)
-        self.login_screen.type(self.login_screen.PASSWORD_FIELD, "password1!")
+        # insert provided password
+        self.login_screen.type(self.login_screen.PASSWORD_FIELD, "")
         self.login_screen.click(self.login_screen.LOGIN_BUTTON)
 
         self.login_screen.is_present(self.login_screen.LANDING_PAGE_HOME_BUTTON)
 
     def test_unsuccessful_login(self):
-        self.login_screen.type(self.login_screen.EMAIL_FIELD, "nbalci09@gmail.com")
-        self.login_screen.click(self.login_screen.PASSWORD_FIELD)
-        self.login_screen.type(self.login_screen.PASSWORD_FIELD, "password2!")
+        # error message can be triggered without having to input any username or password
         self.login_screen.click(self.login_screen.LOGIN_BUTTON)
 
         error_message = self.login_screen.is_present(self.login_screen.USR_NAME_PASSWORD_ERROR_MESSAGE)
