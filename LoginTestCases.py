@@ -31,7 +31,7 @@ class LoginTestCases(unittest.TestCase):
         self.login_screen.type(self.login_screen.PASSWORD_FIELD, "password1!")
         self.login_screen.click(self.login_screen.LOGIN_BUTTON)
 
-        home_button = self.login_screen.is_present(self.login_screen.LANDING_PAGE_HOME_BUTTON)
+        self.login_screen.is_present(self.login_screen.LANDING_PAGE_HOME_BUTTON)
 
     def test_unsuccessful_login(self):
         self.login_screen.type(self.login_screen.EMAIL_FIELD, "nbalci09@gmail.com")
@@ -52,8 +52,7 @@ class LoginTestCases(unittest.TestCase):
     def test_login_screen_signup_button(self):
         self.login_screen.click(self.login_screen.SIGNUP_LINK)
 
-        hudl_signup_page = self.driver.current_url
-        assert hudl_signup_page == "https://www.hudl.com/register/signup"
+        self.wait.until(ec.url_matches("https://www.hudl.com/register/signup"))
 
     def test_login_with_org_button(self):
         self.login_screen.click(self.login_screen.LOGIN_WITH_ORG_BTN)
